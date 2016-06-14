@@ -27,4 +27,12 @@ export class HeroActions {
 			payload: hero
 		}
 	}
+
+	static LOAD_HERO = "[Hero] Load hero";
+	loadHero(id: Number): Action {
+		return {
+			type: HeroActions.LOAD_HERO,
+			payload: id
+		}
+	}
 }

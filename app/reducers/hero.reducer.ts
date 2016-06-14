@@ -10,9 +10,10 @@ export const heroReducer = (state = [], action) => {
 			return [...state, action.payload];
 		}
 		case HeroActions.REMOVE_FROM_COLLECTION: {
-			const hero: Hero = action.payload;
-
 			return state.filter((hero) => hero.id !== action.payload.id);
+		}
+		case HeroActions.LOAD_HERO: {
+			return state.filter((hero) => hero.id === action.payload);
 		}
 	}
 }

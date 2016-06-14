@@ -35,7 +35,9 @@ export class HeroDetailComponent implements OnInit {
 			let id = +this.routeParams.get("id");
 			this.navigated = true;
 			this.heroService.getHero(id)
-				.then(hero => this.hero = hero);
+				.then(() => {
+					this.store.dispatch({ type: HeroActions.LOAD_HERO, payload: id});
+				});
 		} else {
 			this.navigated = false;
 			this.hero = new Hero();

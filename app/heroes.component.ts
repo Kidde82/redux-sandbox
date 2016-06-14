@@ -63,32 +63,16 @@ export class HeroesComponent implements OnInit {
 
 	close(savedHero: Hero) {
 		this.addingHero = false;
-		//if(savedHero) { this.getHeroes(); }
 	}
 
 	delete(hero: Hero, event: any) {
 		event.stopPropagation();
-		console.log("deleting");
-		console.log(hero);
 		this.heroService
 			.delete(hero)
 			.then(res => {
-				//this.heroes = this.heroes.filter(h => h !== hero);
 				this.store.dispatch({ type: HeroActions.REMOVE_FROM_COLLECTION, payload: hero });
-				//if(this.selectedHero === hero) { this.selectedHero = null; }
+				if(this.selectedHero === hero) { this.selectedHero = null; }
 			})
 			.catch(error => this.error = error);
 	}
-
-	// increment() {
-	// 	this.store.dispatch({ type: HeroActions.INIT_COLLECTION, payload: this.heroes });
-	// }
-
-	// decrement() {
-	// 	this.store.dispatch({ type: DECREMENT });
-	// }
-
-	// reset() {
-	// 	this.store.dispatch({ type: RESET });
-	// }	
 }
